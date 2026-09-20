@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AngularJS Filters</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+
+        <h2>Student Information</h2>
+
+        Name:
+        <input type="text" ng-model="name">
+
+        <br><br>
+
+        Fee:
+        <input type="number" ng-model="fee">
+
+        <hr>
+
+        <h3>Original Values</h3>
+
+        <p>Name: {{name}}</p>
+
+        <p>Fee: {{fee}}</p>
+
+        <h3>Filtered Values</h3>
+
+        <p>Uppercase: {{name | uppercase}}</p>
+
+        <p>Lowercase: {{name | lowercase}}</p>
+
+        <p>Currency: {{fee | currency}}</p>
+
+    </div>
+
+
+    <script>
+
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+
+        });
+
+    </script>
+
+</body>
+
+</html>

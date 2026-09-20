@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Change Webpage Style using jQuery</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        .student-table {
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        .student-table th,
+        .student-table td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        .highlight {
+            background-color: lightblue;
+            color: darkblue;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="heading">Student Information</h1>
+
+    <p id="description">
+        This webpage demonstrates jQuery style manipulation.
+    </p>
+
+    <table id="studentTable" class="student-table">
+
+        <tr>
+            <th>Name</th>
+            <th>Roll Number</th>
+            <th>Branch</th>
+        </tr>
+
+        <tr>
+            <td>Ravi</td>
+            <td>101</td>
+            <td>CSE</td>
+        </tr>
+
+        <tr>
+            <td>Phani</td>
+            <td>102</td>
+            <td>CSE</td>
+        </tr>
+
+    </table>
+
+    <br>
+
+    <button id="styleBtn">
+        Change Style
+    </button>
+
+    <button id="addClassBtn">
+        Add CSS Class
+    </button>
+
+    <button id="removeClassBtn">
+        Remove CSS Class
+    </button>
+
+    <script>
+
+        $(document).ready(function () {
+
+            // Change webpage styles
+            $("#styleBtn").click(function () {
+
+                $("#heading").css("background-color", "lightgreen");
+
+                $("#heading").css("color", "red");
+
+                $("#description").css("font-size", "20px");
+
+                $("#studentTable").css("border", "3px solid blue");
+
+            });
+
+
+            // Add CSS class
+            $("#addClassBtn").click(function () {
+
+                $("#description").addClass("highlight");
+
+            });
+
+
+            // Remove CSS class
+            $("#removeClassBtn").click(function () {
+
+                $("#description").removeClass("highlight");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

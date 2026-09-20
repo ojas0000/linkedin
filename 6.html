@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+
+        <h2>Student Information</h2>
+
+        Name:
+        <input type="text" ng-model="name">
+        <br><br>
+
+        Branch:
+        <input type="text" ng-model="branch">
+        <br><br>
+
+        Mark 1:
+        <input type="number" ng-model="mark1">
+        <br><br>
+
+        Mark 2:
+        <input type="number" ng-model="mark2">
+        <br><br>
+
+        Mark 3:
+        <input type="number" ng-model="mark3">
+        <br><br>
+
+        <h3>Student Details</h3>
+
+        <p>Name: <span ng-bind="name"></span></p>
+
+        <p>Branch: <span ng-bind="branch"></span></p>
+
+        <p>Total: {{mark1 + mark2 + mark3}}</p>
+
+        <p>Average: {{(mark1 + mark2 + mark3) / 3}}</p>
+
+        <p ng-if="(mark1 + mark2 + mark3) / 3 >= 40">
+            Result: Pass
+        </p>
+
+        <p ng-if="(mark1 + mark2 + mark3) / 3 < 40">
+            Result: Fail
+        </p>
+
+    </div>
+
+    <script>
+
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+
+        });
+
+    </script>
+
+</body>
+</html>

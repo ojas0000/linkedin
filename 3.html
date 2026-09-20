@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jQuery DOM Manipulation and Traversing</title>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 8px;
+            width: 200px;
+            border: 1px solid black;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+        }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Student List</h1>
+
+    <ul id="studentList">
+        <li>Ravi</li>
+        <li id="selectedStudent">Phani</li>
+        <li>Rahul</li>
+        <li>Sita</li>
+    </ul>
+
+    <button id="addBtn">Add Student</button>
+    <button id="removeBtn">Remove Student</button>
+    <button id="changeBtn">Change Name</button>
+    <button id="parentChildBtn">Parent & Child</button>
+    <button id="firstLastBtn">First & Last</button>
+    <button id="siblingsBtn">Previous & Next</button>
+
+    <div id="output">
+        Result will be displayed here.
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            // a) Add a new student
+            $("#addBtn").click(function () {
+
+                $("#studentList").append("<li>Kiran</li>");
+
+                $("#output").text("New student Kiran added.");
+            });
+
+
+            // b) Remove selected student
+            $("#removeBtn").click(function () {
+
+                $("#selectedStudent").remove();
+
+                $("#output").text("Selected student removed.");
+            });
+
+
+            // c) Change the name of selected student
+            $("#changeBtn").click(function () {
+
+                $("#selectedStudent").text("Arjun");
+
+                $("#output").text("Student name changed to Arjun.");
+            });
+
+
+            // d) Display parent and child elements
+            $("#parentChildBtn").click(function () {
+
+                let parent = $("#selectedStudent").parent().prop("tagName");
+
+                let children = $("#studentList").children().length;
+
+                $("#output").html(
+                    "Parent Element: " + parent +
+                    "<br>Number of Child Elements: " + children
+                );
+            });
+
+
+            // e) Display first and last student
+            $("#firstLastBtn").click(function () {
+
+                let firstStudent =
+                    $("#studentList li").first().text();
+
+                let lastStudent =
+                    $("#studentList li").last().text();
+
+                $("#output").html(
+                    "First Student: " + firstStudent +
+                    "<br>Last Student: " + lastStudent
+                );
+            });
+
+
+            // f) Display previous and next sibling
+            $("#siblingsBtn").click(function () {
+
+                let previous =
+                    $("#selectedStudent").prev().text();
+
+                let next =
+                    $("#selectedStudent").next().text();
+
+                $("#output").html(
+                    "Previous Student: " + previous +
+                    "<br>Next Student: " + next
+                );
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

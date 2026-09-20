@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Details - jQuery</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        .student {
+            border: 2px solid black;
+            padding: 20px;
+            width: 300px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="heading">Student Details</h1>
+
+    <div class="student">
+
+        <p id="name">Name: Ravi</p>
+
+        <p id="roll">
+            Roll Number: 101
+        </p>
+
+        <p id="branch">
+            Branch: CSE
+        </p>
+
+        <p id="marks">
+            Marks: 75
+        </p>
+
+        <a id="profile" href="https://example.com">
+            Student Profile
+        </a>
+
+        <br>
+
+        <button id="modifyBtn">
+            Modify Student Details
+        </button>
+
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#modifyBtn").click(function () {
+
+                // 1. Change text using text()
+                $("#name").text("Name: Phani Kumar");
+
+                // 2. Change HTML content using html()
+                $("#marks").html("Marks: <strong>90</strong>");
+
+                // 3. Change text of branch
+                $("#branch").text("Branch: Computer Science Engineering");
+
+                // 4. Change attribute using attr()
+                $("#profile").attr("href", "https://github.com");
+
+                // 5. Change heading
+                $("#heading").text("Modified Student Details");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>jQuery Event Handling</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        #mouseBox {
+            width: 300px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 2px solid black;
+            text-align: center;
+        }
+
+        #studentDetails {
+            border: 2px solid gray;
+            padding: 15px;
+            width: 300px;
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        #output {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>jQuery Event Handling</h1>
+
+    <!-- a) Click Event -->
+    <button id="colorBtn">
+        Change Background Color
+    </button>
+
+
+    <!-- b) Mouse Enter / Leave -->
+    <div id="mouseBox">
+        Move your mouse over this box
+    </div>
+
+
+    <!-- c) Keyboard Event -->
+    <h3>Type Something</h3>selectedStudent
+
+    <input
+        type="text"
+        id="textBox"
+        placeholder="Type here..."
+    >
+
+    <p id="typedText">
+        Typed text will appear here.
+    </p>
+
+
+    <!-- d) Student Details -->
+    <div id="studentDetails">
+
+        <h3>Student Details</h3>
+
+        <p>Name: Phani Kumar</p>
+        <p>Roll Number: 101</p>
+        <p>Branch: CSE</p>
+        <p>Marks: 90</p>
+
+    </div>
+
+    <button id="hideBtn">
+        Hide Details
+    </button>
+
+    <button id="showBtn">
+        Show Details
+    </button>
+
+
+    <p id="output"></p>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            // a) Change background color when button is clicked
+            $("#colorBtn").click(function () {
+
+                $("body").css("background-color", "lightblue");
+
+            });
+
+
+            // b) Mouse enter and mouse leave events
+            $("#mouseBox").mouseenter(function () {
+
+                $("#output").text("Mouse entered the box.");
+
+            });
+
+            $("#mouseBox").mouseleave(function () {
+
+                $("#output").text("Mouse left the box.");
+
+            });
+
+
+            // c) Display typed text when a key is pressed
+            $("#textBox").keyup(function () {
+
+                let text = $(this).val();
+
+                $("#typedText").text(
+                    "Typed text: " + text
+                );
+
+            });
+
+
+            // d) Hide student details
+            $("#hideBtn").click(function () {
+
+                $("#studentDetails").hide();
+
+            });
+
+
+            // Show student details
+            $("#showBtn").click(function () {
+
+                $("#studentDetails").show();
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Registration</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+
+        <h2>Student Registration Form</h2>
+
+        Name:
+        <input type="text" ng-model="name" required>
+        <br><br>
+
+        Email:
+        <input type="email" ng-model="email" required>
+        <br><br>
+
+        Branch:
+        <input type="text" ng-model="branch" required>
+        <br><br>
+
+        <button ng-click="register()">Register</button>
+
+        <hr>
+
+        <h3>Student Details</h3>
+
+        <p>Name: {{name}}</p>
+        <p>Email: {{email}}</p>
+        <p>Branch: {{branch}}</p>
+
+        <p ng-if="name && email && branch">
+            Registration Successful!
+        </p>
+
+        <p ng-if="!name || !email || !branch">
+            Please enter all required fields.
+        </p>
+
+    </div>
+
+
+    <script>
+
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+
+            $scope.register = function() {
+                alert("Registration completed");
+            };
+
+        });
+
+    </script>
+
+</body>
+
+</html>

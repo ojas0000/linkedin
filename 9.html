@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Information Application</title>
+
+    <!-- AngularJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <!-- AngularJS Routing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular-route.min.js"></script>
+
+</head>
+
+
+<body ng-app="studentApp">
+
+    <h1>Student Information Application</h1>
+
+    <!-- Navigation -->
+
+    <a href="#!/">Home</a> |
+    <a href="#!/students">Student List</a> |
+    <a href="#!/login">Login</a>
+
+    <hr>
+
+    <!-- Current page appears here -->
+
+    <div ng-view></div>
+
+
+<script>
+
+// Create AngularJS application
+var app = angular.module("studentApp", ["ngRoute"]);
+
+
+// ---------------- ROUTING ----------------
+
+app.config(function($routeProvider) {
+
+    $routeProvider
+
+    // Home
+    .when("/", {
+        template:
+            "<h2>Home</h2>" +
+            "<p>Welcome to Student Information Application.</p>"
+    })
+
+
+    // Student List
+    .when("/students", {
+        template:
+            "<h2>Student List</h2>" +
+
+            "<ul>" +
+
+            "<li ng-repeat='s in students'>" +
+
+            "<a href='#!/students/{{s.id}}'>" +
+            "{{s.name}} - {{s.branch}}" +
+            "</a>" +
+
+            "</li>" +
+
+            "</ul>",
+
+        controller: "ListCtrl"
+    })
+
+
+    // Student Details
+    .when("/students/:id", {
+        template:
+            "<h2>Student Details</h2>" +
+
+            "<p>ID: {{student.id}}</p>" +
+            "<p>Name: {{student.name}}</p>" +
+            "<p>Branch: {{student.branch}}</p>",
+
+        controller: "DetailCtrl"
+    })
+
+
+    // Login
+    .when("/login", {
+        template:
+            "<h2>Login</h2>" +
+
+            "<input type='text' " +
+            "ng-model='username' " +
+            "placeholder='Username'>" +
+
+            "<br><br>" +
+
+            "<input type='password' " +
+            "ng-model='password' " +
+            "placeholder='Password'>" +
+
+            "<br><br>" +
+
+            "<button ng-click='login()'>Login</button>" +
+
+            "<p>{{message}}</p>",
+
+        controller: "LoginCtrl"
+    });
+
+
+});
+
+
+// ---------------- SERVICE ----------------
+
+app.service("StudentService", function() {
+
+    var students = [
+
+        {
+            id: 1,
+            name: "Anu",
+            branch: "CSE"
+        },
+
+        {
+            id: 2,
+            name: "Ravi",
+            branch: "IT"
+        },
+
+        {
+            id: 3,
+            name: "Kiran",
+            branch: "ECE"
+        }
+
+    ];
+
+
+    // Return all students
+
+    this.getAll = function() {
+
+        return students;
+
+    };
+
+
+    // Return one student
+
+    this.getById = function(id) {
+
+        for (var i = 0; i < students.length; i++) {
+
+            if (students[i].id == id) {
+
+                return students[i];
+
+            }
+
+        }
+
+    };
+
+});
+
+
+// ---------------- LIST CONTROLLER ----------------
+
+app.controller("ListCtrl", function($scope, StudentService) {
+
+    $scope.students = StudentService.getAll();
+
+});
+
+
+// ---------------- DETAIL CONTROLLER ----------------
+
+app.controller("DetailCtrl", function(
+    $scope,
+    $routeParams,
+    StudentService
+) {
+
+    $scope.student =
+        StudentService.getById($routeParams.id);
+
+});
+
+
+// ---------------- LOGIN CONTROLLER ----------------
+
+app.controller("LoginCtrl", function($scope) {
+
+    $scope.login = function() {
+
+        $scope.message = "Login successful";
+
+    };
+
+});
+
+
+</script>
+
+</body>
+
+</html>
