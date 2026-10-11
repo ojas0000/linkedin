@@ -1,0 +1,8 @@
+101, Phani Kumar, CSE
+102, Ravi Kumar, ECE
+103, Suresh, IT
+104, Kiran, CSE
+105, Arun, EEE
+106, Ramesh, MECH
+107, Priya, CSE
+108, Sneha, IT

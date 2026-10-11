@@ -1,0 +1,21 @@
+<h1>Student List</h1>
+
+<ul>
+    <% students.forEach(student => { %>
+        <li>
+            <%= student.id %> -
+            <%= student.name %> -
+            <%= student.department %>
+        </li>
+    <% }) %>
+</ul>
+
+<h2>Add Student</h2>
+
+<form action="/students" method="POST">
+    <input name="name" placeholder="Student Name" required>
+    <input name="department" placeholder="Department" required>
+    <button type="submit">Add Student</button>
+</form>
+
+<a href="/">Home</a>

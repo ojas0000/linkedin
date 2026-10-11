@@ -1,211 +1,148 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en" ng-app="studentApp">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Information Application</title>
 
-    <!-- AngularJS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
-
-    <!-- AngularJS Routing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular-route.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular-route.min.js"></script>
 </head>
 
-
-<body ng-app="studentApp">
+<body>
 
     <h1>Student Information Application</h1>
 
-    <!-- Navigation -->
-
-    <a href="#!/">Home</a> |
-    <a href="#!/students">Student List</a> |
-    <a href="#!/login">Login</a>
+    <nav>
+        <a href="#!/">Home</a> |
+        <a href="#!/students">Student List</a> |
+        <a href="#!/login">Login</a>
+    </nav>
 
     <hr>
 
-    <!-- Current page appears here -->
+    <div ng-view>
+        Loading application...
+    </div>
 
-    <div ng-view></div>
-
-
-<script>
-
-// Create AngularJS application
-var app = angular.module("studentApp", ["ngRoute"]);
-
-
-// ---------------- ROUTING ----------------
-
-app.config(function($routeProvider) {
-
-    $routeProvider
-
-    // Home
-    .when("/", {
-        template:
-            "<h2>Home</h2>" +
-            "<p>Welcome to Student Information Application.</p>"
-    })
-
-
-    // Student List
-    .when("/students", {
-        template:
-            "<h2>Student List</h2>" +
-
-            "<ul>" +
-
-            "<li ng-repeat='s in students'>" +
-
-            "<a href='#!/students/{{s.id}}'>" +
-            "{{s.name}} - {{s.branch}}" +
-            "</a>" +
-
-            "</li>" +
-
-            "</ul>",
-
-        controller: "ListCtrl"
-    })
-
-
-    // Student Details
-    .when("/students/:id", {
-        template:
-            "<h2>Student Details</h2>" +
-
-            "<p>ID: {{student.id}}</p>" +
-            "<p>Name: {{student.name}}</p>" +
-            "<p>Branch: {{student.branch}}</p>",
-
-        controller: "DetailCtrl"
-    })
-
-
-    // Login
-    .when("/login", {
-        template:
-            "<h2>Login</h2>" +
-
-            "<input type='text' " +
-            "ng-model='username' " +
-            "placeholder='Username'>" +
-
-            "<br><br>" +
-
-            "<input type='password' " +
-            "ng-model='password' " +
-            "placeholder='Password'>" +
-
-            "<br><br>" +
-
-            "<button ng-click='login()'>Login</button>" +
-
-            "<p>{{message}}</p>",
-
-        controller: "LoginCtrl"
-    });
-
-
-});
-
-
-// ---------------- SERVICE ----------------
-
-app.service("StudentService", function() {
-
-    var students = [
-
-        {
-            id: 1,
-            name: "Anu",
-            branch: "CSE"
-        },
-
-        {
-            id: 2,
-            name: "Ravi",
-            branch: "IT"
-        },
-
-        {
-            id: 3,
-            name: "Kiran",
-            branch: "ECE"
-        }
-
-    ];
-
-
-    // Return all students
-
-    this.getAll = function() {
-
-        return students;
-
-    };
-
-
-    // Return one student
-
-    this.getById = function(id) {
-
-        for (var i = 0; i < students.length; i++) {
-
-            if (students[i].id == id) {
-
-                return students[i];
-
+    <script>
+        (function () {
+            if (!window.angular) {
+                document.querySelector('[ng-view]').innerHTML =
+                    "AngularJS failed to load. Check your internet connection.";
+                return;
             }
 
-        }
+            if (!window.angular.module) {
+                return;
+            }
 
-    };
+            var app;
 
-});
+            try {
+                app = angular.module("studentApp", ["ngRoute"]);
+            } catch (e) {
+                document.querySelector('[ng-view]').innerHTML =
+                    "Application initialization failed.";
+                return;
+            }
 
+            app.config(function ($routeProvider) {
+                $routeProvider
+                    .when("/", {
+                        template: `
+                            <h2>Home</h2>
+                            <p>Welcome to Student Information Application.</p>
+                        `
+                    })
+                    .when("/students", {
+                        template: `
+                            <h2>Student List</h2>
+                            <ul>
+                                <li ng-repeat="s in students">
+                                    <a ng-href="#!/students/{{s.id}}">
+                                        {{s.name}} - {{s.branch}}
+                                    </a>
+                                </li>
+                            </ul>
+                        `,
+                        controller: "ListCtrl"
+                    })
+                    .when("/students/:id", {
+                        template: `
+                            <h2>Student Details</h2>
+                            <div ng-if="student">
+                                <p>ID: {{student.id}}</p>
+                                <p>Name: {{student.name}}</p>
+                                <p>Branch: {{student.branch}}</p>
+                            </div>
+                            <p ng-if="!student">Student not found.</p>
+                        `,
+                        controller: "DetailCtrl"
+                    })
+                    .when("/login", {
+                        template: `
+                            <h2>Login</h2>
+                            <form ng-submit="login()">
+                                <input type="text"
+                                       ng-model="username"
+                                       placeholder="Username"
+                                       required>
+                                <br><br>
 
-// ---------------- LIST CONTROLLER ----------------
+                                <input type="password"
+                                       ng-model="password"
+                                       placeholder="Password"
+                                       required>
+                                <br><br>
 
-app.controller("ListCtrl", function($scope, StudentService) {
+                                <button type="submit">Login</button>
+                            </form>
+                            <p>{{message}}</p>
+                        `,
+                        controller: "LoginCtrl"
+                    })
+                    .otherwise({
+                        redirectTo: "/"
+                    });
+            });
 
-    $scope.students = StudentService.getAll();
+            app.service("StudentService", function () {
+                var students = [
+                    { id: 1, name: "Anu", branch: "CSE" },
+                    { id: 2, name: "Ravi", branch: "IT" },
+                    { id: 3, name: "Kiran", branch: "ECE" }
+                ];
 
-});
+                this.getAll = function () {
+                    return students;
+                };
 
+                this.getById = function (id) {
+                    return students.find(function (s) {
+                        return s.id == id;
+                    });
+                };
+            });
 
-// ---------------- DETAIL CONTROLLER ----------------
+            app.controller("ListCtrl", function ($scope, StudentService) {
+                $scope.students = StudentService.getAll();
+            });
 
-app.controller("DetailCtrl", function(
-    $scope,
-    $routeParams,
-    StudentService
-) {
+            app.controller("DetailCtrl", function (
+                $scope, $routeParams, StudentService
+            ) {
+                $scope.student = StudentService.getById($routeParams.id);
+            });
 
-    $scope.student =
-        StudentService.getById($routeParams.id);
-
-});
-
-
-// ---------------- LOGIN CONTROLLER ----------------
-
-app.controller("LoginCtrl", function($scope) {
-
-    $scope.login = function() {
-
-        $scope.message = "Login successful";
-
-    };
-
-});
-
-
-</script>
+            app.controller("LoginCtrl", function ($scope) {
+                $scope.login = function () {
+                    $scope.message = "Login successful";
+                };
+            });
+        })();
+    </script>
 
 </body>
-
 </html>
