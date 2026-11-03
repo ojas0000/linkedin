@@ -1,65 +1,77 @@
 <!DOCTYPE html>
-<html>
-
+<html ng-app>
 <head>
-    <title>Student Registration</title>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <title>AngularJS Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+        .ok {
+            color: green;
+        }
+    </style>
 </head>
+<body>
 
-<body ng-app="myApp">
+<h2>Student Registration Form</h2>
 
-    <div ng-controller="myCtrl">
+<form name="regForm" novalidate>
 
-        <h2>Student Registration Form</h2>
+    Name:
+    <input name="name" ng-model="student.name" required>
+    <span class="error"
+          ng-show="regForm.name.$touched && regForm.name.$invalid">
+        Name is required
+    </span>
+    <br><br>
 
-        Name:
-        <input type="text" ng-model="name" required>
-        <br><br>
+    Roll Number:
+    <input name="roll" ng-model="student.roll" required>
+    <span class="error"
+          ng-show="regForm.roll.$touched && regForm.roll.$invalid">
+        Roll number is required
+    </span>
+    <br><br>
 
-        Email:
-        <input type="email" ng-model="email" required>
-        <br><br>
+    Branch:
+    <input name="branch" ng-model="student.branch" required>
+    <span class="error"
+          ng-show="regForm.branch.$touched && regForm.branch.$invalid">
+        Branch is required
+    </span>
+    <br><br>
 
-        Branch:
-        <input type="text" ng-model="branch" required>
-        <br><br>
+    Email:
+    <input type="email" name="email"
+           ng-model="student.email" required>
+    <span class="error"
+          ng-show="regForm.email.$touched && regForm.email.$invalid">
+        Enter a valid email
+    </span>
+    <br><br>
 
-        <button ng-click="register()">Register</button>
+    Mobile:
+    <input ng-model="student.mobile">
+    <br><br>
 
-        <hr>
+    <button type="button" ng-disabled="regForm.$invalid">
+        Submit
+    </button>
 
-        <h3>Student Details</h3>
+</form>
 
-        <p>Name: {{name}}</p>
-        <p>Email: {{email}}</p>
-        <p>Branch: {{branch}}</p>
+<p class="ok" ng-if="regForm.$valid">
+    Form input is valid.
+</p>
 
-        <p ng-if="name && email && branch">
-            Registration Successful!
-        </p>
+<h3>Entered Student Details</h3>
 
-        <p ng-if="!name || !email || !branch">
-            Please enter all required fields.
-        </p>
-
-    </div>
-
-
-    <script>
-
-        var app = angular.module("myApp", []);
-
-        app.controller("myCtrl", function($scope) {
-
-            $scope.register = function() {
-                alert("Registration completed");
-            };
-
-        });
-
-    </script>
+<p>Name: {{student.name}}</p>
+<p>Roll Number: {{student.roll}}</p>
+<p>Branch: {{student.branch}}</p>
+<p>Email: {{student.email}}</p>
+<p>Mobile: {{student.mobile}}</p>
 
 </body>
-
-</html>
+</html>ssssddd
