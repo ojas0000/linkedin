@@ -1,4 +1,3 @@
-101, Phani Kumar, CSE
 102, Ravi Kumar, ECE
 103, Suresh, IT
 104, Kiran, CSE
