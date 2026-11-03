@@ -2,7 +2,7 @@ const http = require('http');
 
 // Student information
 const students = [
-    { id: 1, name: 'Phani Kumar', department: 'CSE', marks: 85 },
+    { id: 1, name: 'mahesh Kumar', department: 'CSE', marks: 85 },
     { id: 2, name: 'Ravi Kumar', department: 'ECE', marks: 90 },
     { id: 3, name: 'Suresh', department: 'IT', marks: 80 }
 ];
