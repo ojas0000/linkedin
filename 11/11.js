@@ -24,7 +24,7 @@ console.log('Division:', calculator.divide(a, b));
 
 
 // Student details
-const name = 'Phani Kumar';
+const name = 'maheshh Kumar';
 const m1 = 85;
 const m2 = 90;
 const m3 = 80;

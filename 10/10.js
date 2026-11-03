@@ -6,7 +6,7 @@ const os = require('os');
 const EventEmitter = require('events');
 
 // 1. File System (fs) Module
-const studentData = 'Name: Phani Kumar\nRoll No: 23331A0550\nCourse: CSE';
+const studentData = 'Name: mahesh Kumar\nRoll No: 23331a0005\nCourse: CSE';
 
 // Create and write student information into a file
 fs.writeFileSync('student.txt', studentData);
