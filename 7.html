@@ -5,11 +5,47 @@
     <title>AngularJS Filters</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 7px;
+            margin: 8px;
+            width: 90%;
+        }
+
+        h2 {
+            color: blue;
+            text-align: center;
+        }
+
+        h3 {
+            color: green;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+
 </head>
 
 <body ng-app="myApp">
 
-    <div ng-controller="myCtrl">
+    <div class="container" ng-controller="myCtrl">
 
         <h2>Student Information</h2>
 
@@ -35,21 +71,21 @@
 
         <p>Lowercase: {{name | lowercase}}</p>
 
-        <p>Currency: {{fee | currency}}</p>
+        <p>Currency: {{fee | currency:"₹"}}</p>
 
     </div>
-
 
     <script>
 
         var app = angular.module("myApp", []);
 
         app.controller("myCtrl", function($scope) {
-
+            $scope.name = " ";
+            $scope.fee = 0;
         });
 
     </script>
 
 </body>
-
 </html>
+ 

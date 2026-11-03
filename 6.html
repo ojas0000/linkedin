@@ -1,36 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Student Information</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 7px;
+            margin: 5px;
+            width: 90%;
+        }
+
+        h2 {
+            color: blue;
+            text-align: center;
+        }
+
+        h3 {
+            color: green;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
 </head>
 
 <body ng-app="myApp">
 
-    <div ng-controller="myCtrl">
+    <div class="container" ng-controller="myCtrl">
 
         <h2>Student Information</h2>
 
         Name:
         <input type="text" ng-model="name">
+
         <br><br>
 
         Branch:
         <input type="text" ng-model="branch">
+
         <br><br>
 
         Mark 1:
         <input type="number" ng-model="mark1">
+
         <br><br>
 
         Mark 2:
         <input type="number" ng-model="mark2">
+
         <br><br>
 
         Mark 3:
         <input type="number" ng-model="mark3">
-        <br><br>
+
+        <hr>
 
         <h3>Student Details</h3>
 

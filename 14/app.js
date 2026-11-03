@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 
 // Student data
 let students = [
-    { id: 1, name: 'Phani', department: 'CSE' },
+    { id: 1, name: 'Shekar', department: 'CSE' },
     { id: 2, name: 'Ravi', department: 'ECE' }
 ];
 

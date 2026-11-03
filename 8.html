@@ -1,77 +1,132 @@
+
 <!DOCTYPE html>
 <html ng-app>
+
 <head>
     <title>AngularJS Registration</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
     <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 20px;
+            margin: auto;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: blue;
+            text-align: center;
+        }
+
+        input {
+            padding: 7px;
+            width: 90%;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
         .error {
             color: red;
         }
+
         .ok {
             color: green;
         }
     </style>
 </head>
+
 <body>
 
-<h2>Student Registration Form</h2>
+<div class="container">
 
-<form name="regForm" novalidate>
+    <h2>Student Registration Form</h2>
 
-    Name:
-    <input name="name" ng-model="student.name" required>
-    <span class="error"
-          ng-show="regForm.name.$touched && regForm.name.$invalid">
-        Name is required
-    </span>
-    <br><br>
+    <form name="regForm" novalidate>
 
-    Roll Number:
-    <input name="roll" ng-model="student.roll" required>
-    <span class="error"
-          ng-show="regForm.roll.$touched && regForm.roll.$invalid">
-        Roll number is required
-    </span>
-    <br><br>
+        Name:
+        <input name="name" ng-model="student.name" required>
 
-    Branch:
-    <input name="branch" ng-model="student.branch" required>
-    <span class="error"
-          ng-show="regForm.branch.$touched && regForm.branch.$invalid">
-        Branch is required
-    </span>
-    <br><br>
+        <span class="error"
+              ng-show="regForm.name.$touched && regForm.name.$invalid">
+            Name is required
+        </span>
 
-    Email:
-    <input type="email" name="email"
-           ng-model="student.email" required>
-    <span class="error"
-          ng-show="regForm.email.$touched && regForm.email.$invalid">
-        Enter a valid email
-    </span>
-    <br><br>
+        <br><br>
 
-    Mobile:
-    <input ng-model="student.mobile">
-    <br><br>
+        Roll Number:
+        <input name="roll" ng-model="student.roll" required>
 
-    <button type="button" ng-disabled="regForm.$invalid">
-        Submit
-    </button>
+        <span class="error"
+              ng-show="regForm.roll.$touched && regForm.roll.$invalid">
+            Roll number is required
+        </span>
 
-</form>
+        <br><br>
 
-<p class="ok" ng-if="regForm.$valid">
-    Form input is valid.
-</p>
+        Branch:
+        <input name="branch" ng-model="student.branch" required>
 
-<h3>Entered Student Details</h3>
+        <span class="error"
+              ng-show="regForm.branch.$touched && regForm.branch.$invalid">
+            Branch is required
+        </span>
 
-<p>Name: {{student.name}}</p>
-<p>Roll Number: {{student.roll}}</p>
-<p>Branch: {{student.branch}}</p>
-<p>Email: {{student.email}}</p>
-<p>Mobile: {{student.mobile}}</p>
+        <br><br>
+
+        Email:
+        <input type="email" name="email"
+               ng-model="student.email" required>
+
+        <span class="error"
+              ng-show="regForm.email.$touched && regForm.email.$invalid">
+            Enter a valid email
+        </span>
+
+        <br><br>
+
+        Mobile:
+        <input type="tel" name="mobile"
+               ng-model="student.mobile">
+
+        <br><br>
+
+        <button type="button" ng-disabled="regForm.$invalid">
+            Submit
+        </button>
+
+    </form>
+
+    <p class="ok" ng-if="regForm.$valid">
+        Form input is valid.
+    </p>
+
+    <hr>
+
+    <h3>Entered Student Details</h3>
+
+    <p>Name: {{student.name}}</p>
+    <p>Roll Number: {{student.roll}}</p>
+    <p>Branch: {{student.branch}}</p>
+    <p>Email: {{student.email}}</p>
+    <p>Mobile: {{student.mobile}}</p>
+
+</div>
 
 </body>
-</html>ssssddd
+</html>
